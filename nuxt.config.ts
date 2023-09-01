@@ -2,13 +2,14 @@
 export default {
   devtools: { enabled: true },
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {},
-    vendor: ['jquery', 'bootstrap'],
-    
   },
+
+}
+
+module.exports = {
+  css: [
+    'bootstrap/dist/css/bootstrap.css'
+  ],
   plugins: [
     // ...
     { src: '~/plugins/bootstrap.js', mode: 'client' },
