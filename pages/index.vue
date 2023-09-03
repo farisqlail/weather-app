@@ -56,8 +56,40 @@
                 </div>
             </div>
 
-            <div class="maps">
-                <div id="map"></div>
+            <h2 class="mt-4">Today's Weather in {{ locationWeather.name }}</h2>
+            <div class="table-forecast mt-4 mb-5">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col" v-for="(data, index) in forecast" :key="index">{{ formatDate(data.date) }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="mt-3">Icon</span></td>
+                                <td v-for="(data, index) in forecast" :key="index"><img :src="data.day.condition.icon" :alt="data.day.condition.text"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="mt-3">Temp</span></td>
+                                <td v-for="(data, index) in forecast" :key="index">{{ data.day.avgtemp_f }} °f</td>
+                            </tr>
+                            <tr>
+                                <td><span class="mt-3">Wind</span></td>
+                                <td v-for="(data, index) in forecast" :key="index">{{ data.day.totalprecip_in * 100 }}%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="mt-3">Humidity</span></td>
+                                <td v-for="(data, index) in forecast" :key="index">{{ data.day.avghumidity }}%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="mt-3">UV</span></td>
+                                <td v-for="(data, index) in forecast" :key="index">{{ data.day.uv * 100 }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>
@@ -205,6 +237,20 @@ export default {
     margin-top: 10px;
 }
 
+.table-forecast {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 0px;
+    padding-bottom: 0px;
+}
+.table-forecast .table {
+    margin-bottom: 0px;
+}
+.table > :not(caption) > * > * {
+    border-radius: 10px !important;
+}
+
+
 @media (max-width: 768px) {
     .container-body {
         width: 390px;
@@ -229,4 +275,5 @@ export default {
         padding-bottom: 10px;
     }
 
-}</style>
+}
+</style>
