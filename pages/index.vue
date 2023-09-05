@@ -131,7 +131,8 @@ export default {
     methods: {
         async getData() {
             try {
-                const response = await axios.get('http://api.weatherapi.com/v1/current.json?key=ddf098aa8c49424391691331230109&q=Surabaya&aqi=no');
+                const apiKey = "ddf098aa8c49424391691331230109";
+                const response = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Surabaya&aqi=no`);
                 this.locationWeather = response.data.location;
                 this.currentWeather = response.data.current;
             } catch (error) {
@@ -147,9 +148,9 @@ export default {
                 const bulan = String(tanggalSekarang.getMonth() + 1).padStart(2, '0');
                 const tanggal = String(tanggalSekarang.getDate()).padStart(2, '0');
                 const tanggalFormatted = `${tahun}-${bulan}-${tanggal}`;
+                const apiKey = "ddf098aa8c49424391691331230109";
 
-
-                const response = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=ddf098aa8c49424391691331230109&q=Surabaya&days=5&aqi=no&alerts=no`)
+                const response = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=Surabaya&days=5&aqi=no&alerts=no`)
                 // console.log(response.data.forecast.forecastday);
                 this.forecast = response.data.forecast.forecastday;
             } catch (error) {
